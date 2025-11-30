@@ -2,3 +2,26 @@
 
 ----
 
+Порядок запуска приложения
+
+Сценарий 1: Запуск с Docker Compose
+Этот сценарий использует PostgreSQL в контейнере и настройки из .env.
+1. Заполните файл .env.docker своими данными и переименуйте в .env 
+2. Соберите образы (первый раз): docker-compose build
+3. Запустите контейнеры: docker-compose up
+4. Выполните миграции (если нужно). В отдельном терминале:
+ - docker-compose exec django_app python manage.py migrate
+ - docker-compose exec django_app python manage.py createsuperuser
+
+Приложение доступно: http://localhost:8000
+
+
+Сценарий 2: Запуск без Docker
+Этот сценарий использует PostgreSQL и настройки из .env.
+1. Заполните файл .env.localhost своими данными и переименуйте в .env
+2. Активируйте ваше виртуальное окружение Windows (пример .\venv\Scripts\Activate.ps1)
+3. Установите все необходимые библиотеки из requirements.txt: pip install -r requirements.txt
+4. Выполните миграции: python manage.py migrate
+5. Запустите сервер Django: python manage.py runserver
+
+Приложение доступно: http://localhost:8000
